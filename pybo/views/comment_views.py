@@ -79,7 +79,7 @@ def comment_create_answer(request, answer_id):
             comment.answer = answer
             comment.save()
             return redirect('{}#comment_{}'.format(
-                resolve_url('pybo:detail', question_id=comment.question.id), comment.id))
+                resolve_url('pybo:detail', question_id=comment.answer.question.id), comment.id))
     else:
         form = CommentForm()
     context = {'form': form}
@@ -103,7 +103,7 @@ def comment_modify_answer(request, comment_id):
             comment.modify_date = timezone.now()
             comment.save()
             return redirect('{}#comment_{}'.format(
-                resolve_url('pybo:detail', question_id=comment.question.id), comment.id))
+                resolve_url('pybo:detail', question_id=comment.answer.question.id), comment.id))
     else:
         form = CommentForm(instance=comment)
     context = {'form': form}
