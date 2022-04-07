@@ -35,7 +35,16 @@ def index(request):
     context = {'question_list': page_obj} # question_list는 페이징 객체(page_obj)
     return render(request, 'pybo/question_list.html', context)
 
+
+
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
-    context = {'question': question}
+    page = request.GET.get('page', '1')  # 페이지
+    answer_list = question.answer_set.all()
+    # 페이징처리
+    paginator = Paginator(answer_list, per_page=5)  # 페이지당 10개씩 보여주기
+    page_obj = paginator.page(int(page)) # 요청된 페이지에 해당하는 페이징 객체생성
+
+    context = {'answer_list': page_obj, 'question': question}
     return render(request, 'pybo/question_detail.html', context)
+
