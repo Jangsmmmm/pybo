@@ -1,7 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Category(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
+
 class Question(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='', null=True, blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author_question') # on_delete~~ : 계정이 삭제되면 작성한 질문 모두 삭제
     subject = models.CharField(max_length=200)
     content = models.TextField()

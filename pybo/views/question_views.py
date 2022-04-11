@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from ..forms import QuestionForm
-from ..models import Question
+from ..models import Question, Category
 
 
 @login_required(login_url='common:login')
@@ -13,7 +13,8 @@ def question_create(request):
         form = QuestionForm(request.POST) # 입력된 인수(subject, content)로 QuestionForm을 생성하여 각 속성에 저장되어 객체생성
         if form.is_valid():
             question = form.save(commit=False) # commit=False는 임시저장 - question에는 create_date가 현재 없기때문(form에서는 subject,content만 있음)
-            question.author = request.user  # author 속성에 로그인계정 저장
+            question.author = request.user # author 속성에 로그인계정 저장
+            question.category = get_object_or_404(Category, title=request.POST['category'])
             question.create_date = timezone.now()
             question.save()
             return redirect('pybo:index')

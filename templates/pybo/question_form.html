@@ -17,6 +17,14 @@
             </div>
         {% endif %}
         <!-- 오류표시 End -->
+        <div class="col-2">
+            <label>카테고리</label>
+            <select name='category'>
+                <option value="free">자유게시판</option>
+                <option value="qna">질의응답</option>
+                <option value="notice">공지사항</option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="subject">제목</label>
             <input type="text" class="form-control" name="subject" id="subject"

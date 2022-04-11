@@ -1,7 +1,8 @@
 from django import forms
-from pybo.models import Question, Answer,Comment
+from pybo.models import Question, Answer,Comment, Category
 class QuestionForm(forms.ModelForm): # ModelForm을 사용해서 연결된 모델의 데이터를 저장할 수 있는 폼
     class Meta: # 모델폼은 이너클래스인 Meta클래스가 반드시 필요.
+
         model = Question
         fields = ['subject', 'content'] # 모델폼은 사용할 모델과 모델의 속성을 적는다.
         widgets = {

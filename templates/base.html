@@ -14,6 +14,18 @@
 <body>
 <!-- 네비게이션바 -->
 {% include "navbar.html" %}
+
+<!-- 사이드바 -->
+<div class="col-sm-12 col-md-2 col-lg-1 p-2">
+<nav id="sidebar" class="border-top border-secondary">
+    <div class="list-group">
+        {% for category in category %}
+        <a class="rounded-0 list-group-item list-group-item-action list-group-item-light " href="/pybo/{{ category.title }}/">{{category.title}}</a>
+        {% endfor %}
+    </div>
+</nav>
+</div>
+
 <!-- 기본 템플릿 안에 삽입될 내용 Start-->
 {% block content %}
 
