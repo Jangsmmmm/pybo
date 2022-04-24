@@ -20,7 +20,7 @@
 <nav id="sidebar" >
     <div class="list-group">
         {% for category in category %}
-        <a class="rounded-0 list-group-item list-group-item-action list-group-item-light " href="/pybo/{{ category.title }}/">{{category.title}}</a>
+        <a class="rounded-0 list-group-item list-group-item-action list-group-item-light " href="/pybo/{{ category.title }}/">{{category.title}}  {{category.question_set.all.count}}</a>
         {% endfor %}
     </div>
 </nav>

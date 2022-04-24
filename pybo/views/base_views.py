@@ -64,7 +64,7 @@ def category(request, question_category):
     paginator = Paginator(question_list, 10)  # 페이지당 10개씩 보여주기
     page_obj = paginator.get_page(page)
 
-    context = {'question_list': page_obj, 'category':Category.objects.all(), 'cate':question_category} # question_list는 페이징 객체(page_obj)
+    context = {'question_list': page_obj, 'category':Category.objects.all()} # question_list는 페이징 객체(page_obj)
     return render(request, 'pybo/question_list.html', context)
 
 
